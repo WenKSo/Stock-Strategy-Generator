@@ -1,0 +1,93 @@
+.conversationWrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.messages {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.messageAI {
+  background-color: #e1f5fe;
+  color: #01579b;
+}
+
+.messageUser {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  text-align: right;
+}
+
+.inputWrapper {
+  display: flex;
+  margin-top: 20px;
+}
+
+.inputField {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.questionsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.questionItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.questionLabel {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.questionField {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+.preferenceButton {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.preferenceButton:hover {
+  background-color: #0056b3;
+}
+
+.report {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  word-wrap: break-word;
+}
