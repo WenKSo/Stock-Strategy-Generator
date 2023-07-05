@@ -36,6 +36,7 @@ const Index = () => {
     setLoading(true);
     try {
       const reportContent = await generateReport(chatHistory);
+      // send to server
       setReport(reportContent);
     } catch (error) {
       console.error('Error generating report:', error);
