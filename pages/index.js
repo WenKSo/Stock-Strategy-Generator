@@ -3,6 +3,7 @@ import AIStrategy from './AIStrategy.js';
 import styles from '../styles/Chat.module.css';
 import ReactTypingEffect from 'react-typing-effect';
 import { generateReport } from './AIStrategy.js';
+import axios from 'axios';
 
 const Index = () => {
   const [userInput, setUserInput] = useState('');
@@ -32,16 +33,35 @@ const Index = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // 向服务器发送数据
+  const sendDataToAWS = async (data) => {
+    console.log('向服务器发送数据');
+    try {
+      const response = await axios({
+        method: 'post',
+        url: 'http://18.222.180.135:5000/api',
+        headers: { 'Content-Type': 'application/json' },
+        data: data,
+      });
+      console.log(response.data); // 处理响应数据
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const generateStrategyReport = async () => {
     setLoading(true);
     try {
       const reportContent = await generateReport(chatHistory);
       // send to server
+      sendDataToAWS('hello');
       setReport(reportContent);
     } catch (error) {
       console.error('Error generating report:', error);
+      sendDataToAWS('hello');
     } finally {
       setLoading(false);
+      sendDataToAWS('hello');
     }
   };
 
@@ -168,6 +188,13 @@ const Index = () => {
       >
         Generate Strategy
       </button>
+      <button
+  onClick={() => sendDataToAWS('hello')}
+  className={styles.generateButton}
+>
+  SEND TO BACKEND
+</button>
+
       {report && <div className={styles.report}>{report}</div>}
     </div>
   );
