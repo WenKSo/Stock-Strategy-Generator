@@ -189,7 +189,8 @@ const Index = () => {
         Generate Strategy
       </button>
       <button
-  onClick={() => sendDataToAWS('hello')}
+  onClick={() => sendDataToAWS({ code: "print('Hello World')" })}
+
   className={styles.generateButton}
 >
   SEND TO BACKEND
