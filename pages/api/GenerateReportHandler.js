@@ -15,7 +15,10 @@ export default async function handler(req, res) {
     .join('\n');
 
   // Compose a prompt for summarization
-  const prompt = `${chatContent}\n\nSummarize:`;
+  const prompt = `${chatContent}\n\nReply with only code, no need for extra explaination. use the chat history to create a python code for the strategy which import yahoo finance and 
+    able to calculate the return based on the stocks and the time period given by the user. If the user didn't
+    provide actual time period, use the default time period as 1 year. If the user didn't provide the stocks,
+    use the default stocks as AAPL, GOOG, MSFT, AMZN, FB, TSLA, NVDA, PYPL, NFLX, and ADBE.`;
 
   try {
     const response = await openai.createCompletion({

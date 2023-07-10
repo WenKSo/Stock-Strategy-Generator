@@ -44,8 +44,15 @@ const Index = () => {
         data: data,
       });
       console.log(response.data); // 处理响应数据
+      // if (response.data.co == '200'){
+
+      // }
+      // else {
+
+      // }
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data.error_details); // 输出错误详细信息
+      console.error(error.response.data.message); // 输出错误消息
     }
   };
 
@@ -54,14 +61,12 @@ const Index = () => {
     try {
       const reportContent = await generateReport(chatHistory);
       // send to server
-      sendDataToAWS('hello');
+      sendDataToAWS(reportContent);
       setReport(reportContent);
     } catch (error) {
       console.error('Error generating report:', error);
-      sendDataToAWS('hello');
     } finally {
       setLoading(false);
-      sendDataToAWS('hello');
     }
   };
 
@@ -189,7 +194,7 @@ const Index = () => {
         Generate Strategy
       </button>
       <button
-  onClick={() => sendDataToAWS({ code: "print('Hello World')" })}
+  onClick={() => sendDataToAWS({ code: "print('Hello World')fsdfsdfsfsdf" })}
 
   className={styles.generateButton}
 >
