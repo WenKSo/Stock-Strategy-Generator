@@ -1,19 +1,51 @@
+/* Default styles for stage 2 */
 .conversationWrapper {
-  max-width: 600px;
+  height: 90vh;
+  max-width: 700px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f8f8f8;
   border-radius: 8px;
-  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
 }
 
 .messages {
   overflow-y: auto;
-  max-height: 400px;
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 20px;
 }
+
+/* Override or additional styles for stage 1 and stage 3 */
+
+.stage1conversationWrapper,
+.stage3conversationWrapper {
+  position: absolute; /* position the element absolutely to its nearest positioned ancestor */
+  top: 50%; /* position the top edge of the element at the middle of the container */
+  left: 50%; /* position the left edge of the element at the middle of the container */
+  transform: translate(-50%, -50%); /* shift the element back by half of its width and height to center it */
+  height: 55vh; /* adjust to your preference */
+  width: 800px; /* adjust to your preference */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left; /* aligns text to the left */
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.stage1messages, 
+.stage3messages {
+  overflow-y: hidden; /* hide the overflow */
+  flex-grow: 0; /* disable flex-grow */
+}
+
 
 .message {
   margin-bottom: 10px;
@@ -35,24 +67,30 @@
 .inputWrapper {
   display: flex;
   margin-top: 20px;
+  border: 1px solid #ddd; /* add border */
+  border-radius: 4px; /* add border radius */
+  padding: 10px; /* add padding */
 }
 
 .inputField {
   flex-grow: 1;
   margin-right: 10px;
+  border: none; /* remove border */
+  outline: none; /* remove outline */
 }
 
 .questionsWrapper {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
-  align-items: stretch;
   justify-content: space-between;
-  margin-top: 20px;
+  margin:20px;
 }
 
 .questionItem {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  flex-direction: row;
   margin-bottom: 20px;
 }
 
@@ -66,20 +104,27 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 1em;
+  max-width: 400px; /* restrict button width */
 }
 
-.preferenceButton {
+.preferenceButton,
+.generateButton {
   padding: 10px;
   background-color: #007bff;
   color: #fff;
   border-radius: 5px;
   border: none;
-  font-size: 1.2em;
+  font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s;
+  max-width: 200px; /* restrict button width */
+  margin: 0 auto; /* center the button */
+  width: 100%; /* full width */
+  display: block; /* make it block */
 }
 
-.preferenceButton:hover {
+.preferenceButton:hover,
+.generateButton:hover {
   background-color: #0056b3;
 }
 
@@ -90,4 +135,5 @@
   border-radius: 4px;
   background-color: #f8f8f8;
   word-wrap: break-word;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* Add box-shadow for a lifted effect */
 }

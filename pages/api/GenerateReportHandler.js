@@ -15,17 +15,14 @@ export default async function handler(req, res) {
     .join('\n');
 
   // Compose a prompt for summarization
-  const prompt = `${chatContent}\n\nReply with only code, no need for extra explaination. use the chat history to create a python code for the strategy which import yahoo finance and 
-    able to calculate the return based on the stocks and the time period given by the user. If the user didn't
-    provide actual time period, use the default time period as 1 year. If the user didn't provide the stocks,
-    use the default stocks as AAPL, GOOG, MSFT, AMZN, FB, TSLA, NVDA, PYPL, NFLX, and ADBE.`;
+  const prompt = `Collect the discription of the strategy from user in chat chat History to create a Python code for the strategy which start by import yfinance as yf and able to calculate the total return based on the given stock and the time period. The strategy function name is always "userOwnStrategy". and this function will take 3 string variables: stockName, startDate, endDate. Make sure the return code is executable by adding 'result = userOwnStrategy(stockName, startDate, endDate) print(result)' at the end, no need for user to enter any input.Please reply me with only the python code, no need for any extra text or syntax at the beginning Here is the chat history:"${chatContent}"`;
 
   try {
     const response = await openai.createCompletion({
-      model: 'text-davinci-002',
+      model: 'text-davinci-003',
       prompt: prompt,
-      temperature: 0.2,
-      max_tokens: 150,
+      temperature: 0.1,
+      max_tokens: 500,
     });
 
     if (response.data.choices && response.data.choices.length > 0) {

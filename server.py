@@ -9,12 +9,20 @@ CORS(app)
 def receive_data():
     if request.method == 'OPTIONS':
         # 这个分支只会处理 OPTIONS 请求
+        response_headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': 'Content-Type'
+        }
         return ('', 204)
 
     data = request.get_json()
     print('Data received: ', data)
 
-    code = data.get('code')  # 假设前端发送的代码保存在字段 'code' 中
+    code = data.get('code')  
+    stockName = data.get('stockName')
+    startDate = data.get('startDate')
+    endDate = data.get('endDate')
 
     # 验证代码的语法
     try:
@@ -30,7 +38,8 @@ def receive_data():
     try:
         # 在一个安全的沙箱环境中执行代码
         locals_dict = {}
-        exec(code, {}, locals_dict)
+        globals_param = { 'stockName': stockName, 'startDate': startDate, 'endDate': endDate }
+        exec(code, globals_param, locals_dict) 
 
         # 从执行结果中获取需要返回给前端的数据
         result = locals_dict.get('result')
